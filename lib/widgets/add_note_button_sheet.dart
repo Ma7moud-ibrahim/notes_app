@@ -8,20 +8,29 @@ class AddNoteButtonSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(children: [SizedBox(height: 32), CustomTextFeild()]),
+      child: Column(
+        children: [
+          SizedBox(height: 32),
+          CustomTextFeild(hint: 'Title'),
+          SizedBox(height: 16),
+          CustomTextFeild(hint: 'Contant', maxline: 5),
+        ],
+      ),
     );
   }
 }
 
 class CustomTextFeild extends StatelessWidget {
-  const CustomTextFeild({super.key});
-
+  const CustomTextFeild({super.key, required this.hint, this.maxline = 1});
+  final String hint;
+  final int maxline;
   @override
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: kPrimaryColor,
+      maxLines: maxline,
       decoration: InputDecoration(
-        hint: Text("Title", style: TextStyle(color: kPrimaryColor)),
+        hint: Text(hint, style: TextStyle(color: kPrimaryColor)),
         border: outlinedInputBorder(),
         enabledBorder: outlinedInputBorder(),
         focusedBorder: outlinedInputBorder(kPrimaryColor),
