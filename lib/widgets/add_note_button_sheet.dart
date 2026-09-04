@@ -17,7 +17,7 @@ class AddNoteButtonSheet extends StatelessWidget {
             SizedBox(height: 16),
             CustomTextFeild(hint: 'Contant', maxline: 5),
             SizedBox(height: 50),
-            CustomButton(),
+            CustomButton(name: 'Add'),
           ],
         ),
       ),

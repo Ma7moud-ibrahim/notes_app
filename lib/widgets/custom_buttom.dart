@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
+  const CustomButton({super.key, required this.name});
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
         onPressed: () {},
         child: Text(
-          'Add',
+          name,
           style: TextStyle(
             color: Colors.black,
             fontSize: 16,
