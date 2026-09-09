@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notes_app/constants.dart';
 import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/widgets/constants.dart';
 
 part 'add_note_state.dart';
 

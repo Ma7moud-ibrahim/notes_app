@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/widgets/constants.dart';
+import 'package:notes_app/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.name, this.onTap});
+  const CustomButton({
+    super.key,
+    required this.name,
+    this.onTap,
+    this.isLoading = false,
+  });
   final String name;
   final void Function()? onTap;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,14 +24,20 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: Text(
-          name,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        child: isLoading
+            ? SizedBox(
+                height: 24,
+                width: 24,
+                child: const CircularProgressIndicator(color: Colors.black),
+              )
+            : Text(
+                name,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
       ),
     );
   }
