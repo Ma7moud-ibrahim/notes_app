@@ -9,4 +9,11 @@ sealed class NotesState extends Equatable {
 
 final class NotesInitial extends NotesState {}
 
-final class NotesLoading extends NotesState {}
+final class NotesSuccess extends NotesState {
+  final List<NoteModel> notes;
+
+  const NotesSuccess(this.notes);
+
+  @override
+  List<Object> get props => [notes];
+}

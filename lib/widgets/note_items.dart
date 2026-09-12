@@ -50,8 +50,9 @@ class NoteItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {
-                  note.delete();
+                onPressed: () async {
+                  await note.delete();
+                  if (!context.mounted) return;
                   BlocProvider.of<NotesCubit>(context).fatchAllNotes();
                 },
                 icon: Icon(Icons.delete, color: Colors.black, size: 35),
