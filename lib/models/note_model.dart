@@ -1,10 +1,9 @@
-import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
 part 'note_model.g.dart';
 
 @HiveType(typeId: 0)
-class NoteModel extends HiveObject with Equatable {
+class NoteModel extends HiveObject {
   @HiveField(0)
   String title;
   @HiveField(1)
@@ -20,7 +19,4 @@ class NoteModel extends HiveObject with Equatable {
     required this.data,
     required this.color,
   });
-
-  @override
-  List<Object?> get props => [title, subTitle, data, color];
 }
