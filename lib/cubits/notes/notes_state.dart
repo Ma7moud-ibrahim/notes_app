@@ -11,9 +11,10 @@ final class NotesInitial extends NotesState {}
 
 final class NotesSuccess extends NotesState {
   final List<NoteModel> notes;
+  final DateTime fetchedAt;
 
-  const NotesSuccess(this.notes);
+  NotesSuccess(this.notes) : fetchedAt = DateTime.now();
 
   @override
-  List<Object> get props => [notes];
+  List<Object> get props => [notes, fetchedAt];
 }
