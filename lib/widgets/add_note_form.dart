@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/add_note/add_note_cubit.dart';
-import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/widgets/custom_buttom.dart';
+
+import 'package:notes_app/widgets/buttom_add_note.dart';
+import 'package:notes_app/widgets/colors_list_view.dart';
 import 'package:notes_app/widgets/custom_text_feild.dart';
-import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -25,14 +23,14 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          SizedBox(height: 32),
+          SizedBox(height: 20),
           CustomTextFeild(
             hint: 'Title',
             onSaved: (value) {
               title = value;
             },
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 15),
           CustomTextFeild(
             hint: 'Contant',
             maxline: 5,
@@ -40,33 +38,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
               subTitle = value;
             },
           ),
-          SizedBox(height: 50),
-          BlocBuilder<AddNoteCubit, AddNoteState>(
-            builder: (context, state) {
-              return CustomButton(
-                isLoading: state is AddNoteLoading ? true : false,
-                name: 'Add',
+          SizedBox(height: 16),
 
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    var noteModel = NoteModel(
-                      title: title!,
-                      subTitle: subTitle!,
-                      data: DateFormat(
-                        'd MMM yyyy - hh:mm a',
-                      ).format(DateTime.now()),
-                      color: Colors.blue.toARGB32(),
-                    );
-                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
-              );
-            },
-          ),
+          ColorsListView(),
+          SizedBox(height: 16),
+          ButtomAddNote(formKey: formKey, title: title, subTitle: subTitle),
           SizedBox(height: 20),
         ],
       ),
