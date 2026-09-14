@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/widgets/custom_buttom.dart';
+import 'package:notes_app/widgets/custom_button.dart';
 
-class ButtomAddNote extends StatefulWidget {
-  const ButtomAddNote({
+class ButtonAddNote extends StatefulWidget {
+  const ButtonAddNote({
     super.key,
     required this.formKey,
     required this.titleController,
@@ -18,10 +18,10 @@ class ButtomAddNote extends StatefulWidget {
   final TextEditingController subTitleController;
 
   @override
-  State<ButtomAddNote> createState() => _ButtomAddNoteState();
+  State<ButtonAddNote> createState() => _ButtonAddNoteState();
 }
 
-class _ButtomAddNoteState extends State<ButtomAddNote> {
+class _ButtonAddNoteState extends State<ButtonAddNote> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   @override

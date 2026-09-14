@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_app_bar.dart';
-import 'package:notes_app/widgets/custom_text_feild.dart';
+import 'package:notes_app/widgets/custom_text_field.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -46,14 +46,14 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               widget.note.title = titleController.text;
               widget.note.subTitle = subTitleController.text;
               widget.note.save();
-              BlocProvider.of<NotesCubit>(context).fatchAllNotes();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
             },
           ),
           SizedBox(height: 50),
-          CustomTextFeild(hint: widget.note.title, controller: titleController),
+          CustomTextField(hint: widget.note.title, controller: titleController),
           SizedBox(height: 15),
-          CustomTextFeild(
+          CustomTextField(
             hint: widget.note.subTitle,
             controller: subTitleController,
             maxline: 5,

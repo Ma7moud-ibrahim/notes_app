@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:notes_app/widgets/buttom_add_note.dart';
+import 'package:notes_app/widgets/button_add_note.dart';
 import 'package:notes_app/widgets/colors_list_view.dart';
-import 'package:notes_app/widgets/custom_text_feild.dart';
+import 'package:notes_app/widgets/custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -33,17 +33,17 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         children: [
           SizedBox(height: 20),
-          CustomTextFeild(hint: 'Title', controller: titleController),
+          CustomTextField(hint: 'Title', controller: titleController),
           SizedBox(height: 15),
-          CustomTextFeild(
-            hint: 'Contant',
+          CustomTextField(
+            hint: 'Content',
             maxline: 5,
             controller: subTitleController,
           ),
           SizedBox(height: 16),
           ColorsListView(),
           SizedBox(height: 16),
-          ButtomAddNote(
+          ButtonAddNote(
             formKey: formKey,
             titleController: titleController,
             subTitleController: subTitleController,

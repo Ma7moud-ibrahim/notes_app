@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
 
-class CustomTextFeild extends StatelessWidget {
-  const CustomTextFeild({
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
     super.key,
     required this.hint,
     this.maxline = 1,
@@ -25,7 +25,7 @@ class CustomTextFeild extends StatelessWidget {
       controller: controller,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return 'Feild is required';
+          return 'Field is required';
         } else {
           return null;
         }

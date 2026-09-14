@@ -17,7 +17,7 @@ class AddNoteButtonSheet extends StatelessWidget {
           if (state is AddNoteFailure) {}
 
           if (state is AddNoteSuccess) {
-            BlocProvider.of<NotesCubit>(context).fatchAllNotes();
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
 
             Navigator.pop(context);
           }
