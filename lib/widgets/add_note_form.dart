@@ -15,7 +15,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
-  String? title, subTitle;
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController subTitleController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    subTitleController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -24,25 +33,21 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         children: [
           SizedBox(height: 20),
-          CustomTextFeild(
-            hint: 'Title',
-            onSaved: (value) {
-              title = value;
-            },
-          ),
+          CustomTextFeild(hint: 'Title', controller: titleController),
           SizedBox(height: 15),
           CustomTextFeild(
             hint: 'Contant',
             maxline: 5,
-            onSaved: (value) {
-              subTitle = value;
-            },
+            controller: subTitleController,
           ),
           SizedBox(height: 16),
-
           ColorsListView(),
           SizedBox(height: 16),
-          ButtomAddNote(formKey: formKey, title: title, subTitle: subTitle),
+          ButtomAddNote(
+            formKey: formKey,
+            titleController: titleController,
+            subTitleController: subTitleController,
+          ),
           SizedBox(height: 20),
         ],
       ),

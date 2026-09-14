@@ -14,7 +14,23 @@ class EditNoteViewBody extends StatefulWidget {
 }
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
-  String? title, supTitle;
+  late final TextEditingController titleController;
+  late final TextEditingController subTitleController;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.note.title);
+    subTitleController = TextEditingController(text: widget.note.subTitle);
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    subTitleController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,26 +43,19 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             title: 'Edit Note',
             icon: Icons.check,
             onPressed: () {
-              widget.note.title = title ?? widget.note.title;
-              widget.note.subTitle = supTitle ?? widget.note.subTitle;
+              widget.note.title = titleController.text;
+              widget.note.subTitle = subTitleController.text;
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).fatchAllNotes();
               Navigator.pop(context);
             },
           ),
           SizedBox(height: 50),
-          CustomTextFeild(
-            hint: widget.note.title,
-            onChange: (value) {
-              title = value;
-            },
-          ),
+          CustomTextFeild(hint: widget.note.title, controller: titleController),
           SizedBox(height: 15),
           CustomTextFeild(
             hint: widget.note.subTitle,
-            onChange: (value) {
-              supTitle = value;
-            },
+            controller: subTitleController,
             maxline: 5,
           ),
         ],

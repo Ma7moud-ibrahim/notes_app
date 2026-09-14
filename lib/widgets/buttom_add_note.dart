@@ -9,13 +9,13 @@ class ButtomAddNote extends StatefulWidget {
   const ButtomAddNote({
     super.key,
     required this.formKey,
-    required this.title,
-    required this.subTitle,
+    required this.titleController,
+    required this.subTitleController,
   });
 
   final GlobalKey<FormState> formKey;
-  final String? title;
-  final String? subTitle;
+  final TextEditingController titleController;
+  final TextEditingController subTitleController;
 
   @override
   State<ButtomAddNote> createState() => _ButtomAddNoteState();
@@ -29,22 +29,19 @@ class _ButtomAddNoteState extends State<ButtomAddNote> {
     return BlocBuilder<AddNoteCubit, AddNoteState>(
       builder: (context, state) {
         return CustomButton(
-          isLoading: state is AddNoteLoading ? true : false,
+          isLoading: state is AddNoteLoading,
           name: 'Add',
-
           onTap: () {
             if (widget.formKey.currentState!.validate()) {
-              widget.formKey.currentState!.save();
               var noteModel = NoteModel(
-                title: widget.title!,
-                subTitle: widget.subTitle!,
+                title: widget.titleController.text,
+                subTitle: widget.subTitleController.text,
                 data: DateFormat('d MMM yyyy - hh:mm a').format(DateTime.now()),
                 color: Colors.blue.toARGB32(),
               );
               BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
             } else {
-              autovalidateMode = AutovalidateMode.always;
-              setState(() {});
+              setState(() => autovalidateMode = AutovalidateMode.always);
             }
           },
         );
