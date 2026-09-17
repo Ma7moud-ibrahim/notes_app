@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes/notes_cubit.dart';
+import 'package:notes_app/helper/show_snackbar.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
@@ -54,6 +55,7 @@ class NoteItem extends StatelessWidget {
                   await note.delete();
                   if (!context.mounted) return;
                   BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                  showSnackBar(context, 'delete note success');
                 },
                 icon: Icon(Icons.delete, color: Colors.black, size: 35),
               ),
